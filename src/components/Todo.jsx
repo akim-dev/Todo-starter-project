@@ -1,13 +1,12 @@
 import React from 'react';
 
-function Todo() {
-  
+function Todo({ name, completed }) {
   return (
     <li className="todo stack-small">
       <div className="c-cb">
         <input id="todo-0" type="checkbox" defaultChecked={completed} />
         <label className="todo-label" htmlFor="todo-0">
-          Eat
+          {name}
         </label>
       </div>
       <div className="btn-group">
