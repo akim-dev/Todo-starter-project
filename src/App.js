@@ -2,36 +2,22 @@ import React from 'react';
 import './style.css';
 
 import Todo from './components/Todo';
+import Form from './components/Form';
 
-export default function App() {
+export default function App({ data }) {
+  const taskList = data.map((todo) => (
+    <Todo name={todo.name} completed={todo.completed} />
+  ));
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
-      <form>
-        <h2 className="label-wrapper">
-          <label htmlFor="new-todo-input" className="label__lg">
-            What needs to be done?
-          </label>
-        </h2>
-        <input
-          type="text"
-          id="new-todo-input"
-          className="input input__lg"
-          name="text"
-          autoComplete="off"
-        />
-        <button type="submit" className="btn btn__primary btn__lg">
-          Add
-        </button>
-      </form>
+      <Form />
       <ul
         role="list"
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading"
       >
-        <Todo />
-        <Todo />
-        <Todo />
+        {taskList}
       </ul>
     </div>
   );
