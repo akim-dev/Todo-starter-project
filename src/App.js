@@ -1,16 +1,22 @@
 import React from 'react';
 import './style.css';
+import React, { useState } from 'react';
 
 import Todo from './components/Todo';
 import Form from './components/Form';
+import nanoid from 'nanoid';
 
 export default function App({ data }) {
+  const [tasks, setTasks] = useState(data);
+
   // untuk callback yaitu passing data dari child ke APP melalui props
   function addTask(name) {
-    return console.log('ini dari add task function yang ada di APP');
+    // return console.log(`${name}`);
+    const newTask = { id: 'id', name, completed: false };
+    setTasks([...tasks, newTask]);
   }
 
-  const taskList = data.map((todo) => (
+  const taskList = tasks.map((todo) => (
     <Todo name={todo.name} completed={todo.completed} />
   ));
   return (

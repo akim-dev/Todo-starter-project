@@ -1,11 +1,22 @@
 import React from 'react';
+import React, { useState } from 'react';
 
-function Form({ addTodo }) {
+function Form(props) {
+  const [name, setName] = useState('');
+
   function handleSubmit(e) {
     e.preventDefault();
     // console.log('klik');
-    console.log(addTodo('Ini test'));
+    // console.log(addTodo('Ini test'));
+    props.addTodo(name);
+    setName('');
   }
+
+  function handleChange(e) {
+    // console.log(e.target.value);
+    setName(e.target.value);
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <h2 className="label-wrapper">
@@ -19,6 +30,8 @@ function Form({ addTodo }) {
         className="input input__lg"
         name="text"
         autoComplete="off"
+        value={name}
+        onChange={handleChange}
       />
       <button type="submit" className="btn btn__primary btn__lg">
         Add
